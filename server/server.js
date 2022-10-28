@@ -6,8 +6,6 @@ import { v2 as cloudinary } from 'cloudinary'
 import dotenv from 'dotenv'
 dotenv.config()
 
-
-
 const PORT = 5172
 const app = express()
 
@@ -18,23 +16,25 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-/* Before anything happens check if cloudinary config is up and running */
+/* Before anything happen set cloudinary config is up and running */
+cloudinary.config({ 
+    cloud_name: 'process.env.CLOUD_NAME', 
+    api_key: 'process.env.API_KEY',  
+    api_secret: 'process.env.API_SECRET',
+    secure: true
+  });
 
-if(typeof(process.env.CLOUDINARY_URL) === 'undefined'){
-    console.warn('!! cloudinary config is not defined check dotenv file make sure it is exported')
-}
 
 let img = []
 
 /* Endpoint 1 this endpoint returns the string hello word */
 app.get('/', (req, res) =>{
-    res.send(img)
+    res.json({message : 'This is your server response'})
 })
 
 
 /* Endpoint 2 this endpoint will be called images 
    this endpoint will retun images blob from cloudinary server
-
 */
 
 
