@@ -2,8 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import axios from 'axios'
 import bodyParser from 'body-parser'
-
-import { dbConnect } from './dbconnect.js'
+import { dbConnect } from './db/dbconnect.js'
+import bcrypt from 'bcrpyt'
 
 const PORT = 5172
 const app = express()
@@ -24,9 +24,12 @@ app.get('/', (req, res) =>{
 })
 
 
-/* Endpoint 2 this endpoint will be called images 
-   this endpoint will retun images blob from cloudinary server
+/* Create register endpoint here to receive data from the body of the frontend and store them in the mongoDB I have created.
 */
+
+app.post('/register', (req, res) =>{
+    //do something here
+})
 
 
 app.listen(PORT,   ()=>{

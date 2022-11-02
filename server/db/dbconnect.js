@@ -15,7 +15,5 @@ dotenv.config()
         console.log(`Connection to Mongo failed: ${err}`);
     })
 
-
-
 }
 
