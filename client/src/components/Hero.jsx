@@ -12,8 +12,8 @@ const Hero = () => {
         {/* Below div will be for the words and cta buttons */}
         <div className=''>
             <div className='p-10 m-5    sm:m-10'>
-                <h2 className='text-slate-100 font-poppins text-3xl font-bold mb-10 leading-normal sm:text-5xl'>
-                    Always order delicious <br/>and fresh cuisine <br/>anytime
+                <h2 className='text-slate-100 font-poppins text-3xl font-bold mb-10 leading-normal sm:text-5xl m-4'>
+                    Always order delicious <br/>and fresh meals <br/>anytime
                 </h2>
                 <p className='text-slate-100 font-poppins text-lg sm:text-2xl'>
                     Simply confirm your order and<br/> take advantage of our wonderful delivery services
