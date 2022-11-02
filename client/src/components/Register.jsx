@@ -14,7 +14,14 @@ const Register = () => {
                 <input type="password" name="" id="" className="p-1 shadow-sm mt-1 outline-none bg-transparent border-b-2" placeholder="*******"/>
                 <input type="submit" value="submit"  className="bg-green rounded-md mt-8 cursor-pointer hover:opacity-70"/>
             </form>
+
+            <div className="flex justify-between font-poppins">
+                <p className=" text-slate-100 text-xs">Already have an account</p>
+                <span className="text-blue-600 text-xs hover:underline underline-offset-4"><a href="">sign in</a></span>
             </div>
+
+            </div>
+
         </div>
      );
 }
