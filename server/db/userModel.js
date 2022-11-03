@@ -16,4 +16,4 @@ const userSchema =  new Schema({
 })
 
 //This code will create a user collection if the collection is not available in the mongodb database.
-module.exports = mongoose.model.Users || mongoose.model("Users", userSchema)
+export const User = mongoose.model.Users || mongoose.model("Users", userSchema)
