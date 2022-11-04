@@ -3,6 +3,10 @@ import mongoose from "mongoose"
 const {Schema} = mongoose
 
 const userSchema =  new Schema({
+    name :{
+        type : 'string',
+        required : [true, "Please enter your first name"]
+    },
     email : {
         type: 'string',
         required : [true, "Please enter a valid email address"],

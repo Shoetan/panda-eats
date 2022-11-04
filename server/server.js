@@ -15,6 +15,7 @@ app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(express.json())
 
 
 /* Run the dbConnect function to make a connection to the database */
@@ -32,18 +33,25 @@ app.get('/', (req, res) =>{
 /* Create register endpoint here to receive data from the body of the frontend and store them in the mongoDB I have created.
 */
 
-app.post('/register', (req, res) =>{
+app.post('/register', async (req, res) =>{
     //get email and password from the body and first is to hash the password 10 salt times using the bcrpyt library
+     
+    const name = req.body.name
+    const email = req.body.email
+    const password = req.body.password
+    
     const user = new User ({
-        email : req.body.email,
-        password : req.body.password
+        name : name,
+        email : email,
+        password : password
     })
 
-    user.save()
-    .then(() =>{
-        console.log("User added successfully");
-    })
-    .catch(err => console.log(`User not added ${err}`))
+    try {
+        const response = await user.save()
+        res.send(response);
+    } catch (error) {
+        console.log(error.message)
+    }
 
 
 })
