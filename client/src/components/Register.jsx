@@ -21,6 +21,7 @@ const Register = () => {
             password:password
          })
             console.log('User added successfully');
+            console.log(res.status)
         } 
         
         catch (error)

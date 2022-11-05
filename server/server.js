@@ -65,11 +65,11 @@ app.post('/login', async(req, res) =>{
     const email = req.body.email
     const password = req.body.password
 
-    //get the user object from the database
+    //get the user object from the database using the User model and the findOne function
 
     const user =  await User.findOne({email})
 
-    //if user is not found i.e the user email is not found in the database dsiplay this error
+    //if user object is not found i.e the user email is not found in the database dsiplay this error
 
     if (!user) {
         res.json({error: 'User not found'})
