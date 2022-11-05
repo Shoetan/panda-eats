@@ -1,7 +1,7 @@
 import { useState } from "react";
- import axios from "axios";
+import axios from "axios";
 
-
+import icon from '../assets/icon.png'
 
 const Register = () => {
 
@@ -11,6 +11,7 @@ const Register = () => {
     const [password, setPassword] = useState('')
 
 
+    //Register function to be called when the submit button on the form is clicked this will add the user credentials to the mongoDB 
     const registerUser =  async () =>{
 
         try {

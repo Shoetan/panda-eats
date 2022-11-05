@@ -2,7 +2,7 @@ import { useState } from "react";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
-
+import Login from "./components/Login";
 
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
 
          {
           !isSignedIn ? (
-            <Register/>
+            <Login/>
           ) : 
           
            (
