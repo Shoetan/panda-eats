@@ -57,6 +57,45 @@ app.post('/register', async (req, res) =>{
 
     })
 
+// Create a login end point to receive data from a form and compare it to data in  database
+
+app.post('/login', async(req, res) =>{
+    //get email and password from the user 
+
+    const email = req.body.email
+    const password = req.body.password
+
+    //get the user object from the database
+
+    const user =  await User.findOne({email})
+
+    //if user is not found i.e the user email is not found in the database dsiplay this error
+
+    if (!user) {
+        res.json({error: 'User not found'})
+    }
+    else {
+        console.log(user.id)
+    }
+
+    //if the user is found in the database get the password from the user object
+
+    const dbPassword = user.password
+
+    // compare if the password enter during login is the same as the password stored in the datbase
+
+    const matchedPassword = await bcrypt.compare(password, dbPassword)
+
+    if(!matchedPassword){
+        res.json({
+            error : 'Invalid password or email'
+        })
+    } else {
+        res.json({
+            message : 'Loggedin successful'
+        })
+    }
+})
 
 app.listen(PORT,   ()=>{
     console.log(`Server listening on port ${PORT}`)

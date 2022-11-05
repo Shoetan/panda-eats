@@ -9,7 +9,7 @@ const Login = () => {
         <div>
             
             <h1 className="text-center text-slate-100 font-poppins text-4xl mt-20 font-medium">
-                 Sign up
+                 Login
             </h1>
             
             <div className="w-10/12 flex flex-col bg-gray-700 bg-opacity-20 rounded-md p-3 mt-28 sm:w-96 mx-auto">
