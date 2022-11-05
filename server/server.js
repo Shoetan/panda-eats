@@ -11,7 +11,7 @@ const app = express()
 
 app.use(cors())
 
-/* Configuring the body parser */
+/* Configuring all necessary middleware for the server */
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -34,27 +34,28 @@ app.get('/', (req, res) =>{
 */
 
 app.post('/register', async (req, res) =>{
-    //get email and password from the body and first is to hash the password 10 salt times using the bcrpyt library
+    //get email and password from the body and hash the password 10 salt times using the bcrpyt library
      
     const name = req.body.name
     const email = req.body.email
     const password = req.body.password
     
-    const user = new User ({
-        name : name,
-        email : email,
-        password : password
-    })
+     try {
+        const hashedPassword =  await bcrypt.hash(password, 10)
+        const user = new User({
+            name : name,
+            email : email,
+            password : hashedPassword
+        })
 
-    try {
         const response = await user.save()
-        res.send(response);
-    } catch (error) {
-        console.log(error.message)
-    }
+        res.send(response)
+     }
+      catch (error) {
+        console.log(error.message);
+     } 
 
-
-})
+    })
 
 
 app.listen(PORT,   ()=>{
