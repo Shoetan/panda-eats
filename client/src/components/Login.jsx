@@ -1,15 +1,30 @@
 import { useState } from "react";
-
+import axios from "axios";
 const Login = () => {
     
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+
+    const loginUser = async () =>{
+        try {
+           const res = await axios.post("http://localhost:5172/login", {
+            email : email,
+            password : password
+           })
+
+           console.log("user loggedin successfully")
+           console.log(res.status)
+        } catch (error) {
+            
+        }
+    }
+
     return (
         <div>
             
             <h1 className="text-center text-slate-100 font-poppins text-4xl mt-20 font-medium">
-                 Sign up
+                 Login
             </h1>
             
             <div className="w-10/12 flex flex-col bg-gray-700 bg-opacity-20 rounded-md p-3 mt-28 sm:w-96 mx-auto">
@@ -22,7 +37,7 @@ const Login = () => {
                     <label>Password</label>
                     <input type="password" name="" id="" className="p-1 shadow-sm mt-1 outline-none bg-transparent border-b-2" placeholder="*******" value = {password} onChange= { (e) => {setPassword(e.target.value)}}/>
 
-                    <button className="bg-green rounded-md mt-8 cursor-pointer hover:opacity-70" > Login </button>
+                    <button className="bg-green rounded-md mt-8 cursor-pointer hover:opacity-70" onClick={loginUser}> Login </button>
 
                 </div>
 
