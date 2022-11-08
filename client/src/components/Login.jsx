@@ -7,19 +7,17 @@ const Login = () => {
 
 
     const loginUser = async () =>{
-        try {
-           const res = await axios.post("http://localhost:5172/login", {
-            email : email,
-            password : password
-           })
+           try {
+            const res = await axios.post("http://localhost:5172/login", {
+                email : email,
+                password : password
+            })
 
-           console.log("user loggedin successfully")
-           console.log(res.status)
-        } catch (error) {
-            
-        }
+            console.log(res.status);
+           } catch (error) {
+            console.log(error.message)
+           }
     }
-
     return (
         <div>
             
