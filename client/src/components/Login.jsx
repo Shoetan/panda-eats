@@ -1,10 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
+import {useDispatch} from 'react-redux'
+import {login} from '../features/userSlice'
+
+
 const Login = () => {
     
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const dispatch = useDispatch()
 
     const loginUser = async () =>{
            try {
@@ -12,8 +16,11 @@ const Login = () => {
                 email : email,
                 password : password
             })
-
-            console.log(res.status);
+            dispatch(login({
+                status : res.status
+            }))
+            console.log(res);
+            
            } catch (error) {
             console.log(error.message)
            }
