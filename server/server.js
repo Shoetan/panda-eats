@@ -43,8 +43,8 @@ app.post('/register', async (req, res) =>{
      try {
         const hashedPassword =  await bcrypt.hash(password, 10)
         const user = new User({
-            name : name,
-            email : email,
+            name : name.toLowerCase(),
+            email : email.toLowerCase(),
             password : hashedPassword
         })
 
@@ -72,30 +72,25 @@ app.post('/login', async(req, res) =>{
     //if user object is not found i.e the user email is not found in the database dsiplay this error
 
     if (!user) {
-        res.json({error: 'User not found'})
+        res.status(400).send({error: 'User not found'})
     }
+
+    //else if the email is found in the database compare the password returned from the user object and the password entered in the login form
+
     else {
-        console.log(user.id)
+        const matchedPassword = await bcrypt.compare(password, user.password)
+
+        if(!matchedPassword) {
+            res.status(400).send({error: 'Invalid password'})
+        }
+
+        else{
+            res.send({
+                message:'Loggedin Successfully'
+            })
+        }
     }
-
-    //if the user is found in the database get the password from the user object
-
-    const dbPassword = user.password
-
-    // compare if the password enter during login is the same as the password stored in the datbase
-
-    const matchedPassword = await bcrypt.compare(password, dbPassword)
-
-    if(!matchedPassword){
-        res.json({
-            error : 'Invalid password or email'
-        })
-    } else {
-        res.json({
-            message : 'Loggedin successful'
-        })
-    }
-})
+}) 
 
 app.listen(PORT,   ()=>{
     console.log(`Server listening on port ${PORT}`)
